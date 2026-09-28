@@ -1,6 +1,6 @@
 # Morning Paper
 
-A Claude skill that builds you a one-page, newspaper-style briefing every morning from your calendar,
+A Claude skill that builds you a newspaper-style briefing (one page by default) every morning from your calendar,
 inbox, to-do list and the news, then prints it (or emails it to you). You scribble on it, snap a
 photo, send it back to Claude, and your notes turn into done items, new to-dos and email drafts.
 
@@ -19,7 +19,8 @@ inbox and you reply to it with your notes instead.
 
 1. **Sections:** tick the ones you want: Today's Lead, Schedule, Countdown (to anything you like: a
    trip, a launch, a race), Inbox Overnight, To-Do Desk, Ideas File, People Worth Meeting, Write-in box.
-2. **Time and delivery:** when it arrives, which days, and print, email, both, or just save the PDF.
+2. **Time, delivery and length:** when it arrives, which days, print, email, both, or just save the
+   PDF, and how long (one page, two pages, or as long as it needs).
 3. **News:** yes or no (with an optional Business column).
 4. **Sources and topics:** your favourite outlets and up to 4 topics.
 5. **To-do list:** where yours lives (Notion, Todoist, Google Tasks, Apple Reminders, a file).

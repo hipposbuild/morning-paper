@@ -8,7 +8,8 @@ description: A personal one-page printed morning newspaper, built by Claude ever
 A one-page, newspaper-style printout of the reader's day: schedule, countdown, inbox, to-dos, news
 and more. Claude builds it every morning, prints it, and the reader scribbles on it. When they send
 a photo of their notes, Claude acts on them. The point is to start the day with paper instead of a
-phone, so everything should fit on one page and read in two minutes.
+phone, so by default everything fits on one page and reads in two minutes (people can choose a
+longer paper in setup).
 
 **Important: your computer has to be awake.** The paper is built by a scheduled task that runs on
 your computer, inside the Claude desktop app. If the computer is asleep (or the app is closed) at
@@ -73,7 +74,9 @@ Follow-ups, only for sections they picked:
 **2. Time and delivery.** "What time should it arrive?" Options: 6:00 AM, 7:00 AM, 8:00 AM, custom.
 Then: weekdays only, or every day? Then "How do you want it?" Options: Print it (Recommended), Email it
 to me, Both, Just save the PDF. If printing, run `lpstat -p` (macOS or Linux) to list printers and let
-them pick one. If emailing, confirm the address (their own address only) and check an email connector
+them pick one. Also ask "How long should it be?" Options: One page (Recommended, a two-minute read),
+Two pages (front and back, more room for news and to-dos), As long as it needs. Explain the trade-off
+in a phrase: shorter is faster to read, longer covers more. If emailing, confirm the address (their own address only) and check an email connector
 that can send is connected (for example Gmail).
 
 **3. News.** "Do you want a news section?" Yes / No. If yes, also offer the Business column.
@@ -156,8 +159,11 @@ else.
    print a short honest line ("Calendar unavailable this morning") instead. A wrong fact on paper is
    worse than a gap, because the reader acts on it without checking.
 5. Render and check the page count with `scripts/render_pdf.sh editions/YYYY-MM-DD.html`. It prints
-   the number of pages. If more than 1, trim words (shorter lines, fewer items) and re-render. Trim
-   before shrinking type: small text on paper is hard to read at 6 AM.
+   the number of pages. If it is over the length in `config.md` (default 1), trim words (shorter
+   lines, fewer items) and re-render. Trim before shrinking type: small text on paper is hard to read
+   at 6 AM. For a longer paper, give sections more items and fuller stories rather than padding, and
+   let each page break fall between sections, not through one. If printing two pages, print
+   double-sided when the printer supports it (`-o sides=two-sided-long-edge`).
 6. Deliver per `config.md` (see "Delivery" below). Print if configured: `lp -d <printer> -o media=Letter editions/YYYY-MM-DD.pdf` (use A4 if the
    config says so). If it fails, check `lpstat -o` for stuck jobs from an earlier attempt, and clear
    them with `cancel -a <printer>` before trying once more. Do not retry in a loop; the PDF is saved

@@ -1,12 +1,12 @@
 # {{PAPER_NAME}}: editorial rules
 
-A one-page printed morning newspaper for {{READER_NAME}}. Built by the scheduled task at {{TIME}}
+A printed morning newspaper for {{READER_NAME}}. Built by the scheduled task at {{TIME}}
 ({{DAYS}}), saved in `editions/`, and delivered by: {{print / email / both / save only}}.
 Email address (the reader's own, only): {{address or none}}.
 Edit this file to change the paper. Every morning run reads it fresh.
 
 ## House rules
-- One page ({{PAPER_SIZE}}). Never spill to page 2: trim words first.
+- Length: {{1 page / 2 pages / no limit}} ({{PAPER_SIZE}}). Never go over it: trim words first.
 - Time zone: {{TIME_ZONE}}. All times shown in local time.
 - Never invent facts. If a source fails, print a short honest "unavailable" line.
 - Read only while building: no creating events or editing the to-do list, and no email except
