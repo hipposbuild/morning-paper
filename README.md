@@ -23,8 +23,16 @@ inbox and you reply to it with your notes instead.
 3. **News:** yes or no (with an optional Business column).
 4. **Sources and topics:** your favourite outlets and up to 4 topics.
 5. **To-do list:** where yours lives (Notion, Todoist, Google Tasks, Apple Reminders, a file).
+6. **Keeping your computer awake:** do you need help setting that up? (See below.)
 
 Then it builds your first edition on the spot and schedules the rest.
+
+## Heads up: your computer has to be awake
+
+The paper is made by a scheduled task that runs on your computer, in the Claude desktop app. If the
+computer is asleep or the app is closed at print time, the paper waits until you open it and arrives
+late. Setup offers to walk you through keeping it awake (a power setting, or a scheduled wake just
+before print time). Keep it plugged in and leave the Claude app open.
 
 ## Install
 

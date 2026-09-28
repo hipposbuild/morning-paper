@@ -10,6 +10,11 @@ and more. Claude builds it every morning, prints it, and the reader scribbles on
 a photo of their notes, Claude acts on them. The point is to start the day with paper instead of a
 phone, so everything should fit on one page and read in two minutes.
 
+**Important: your computer has to be awake.** The paper is built by a scheduled task that runs on
+your computer, inside the Claude desktop app. If the computer is asleep (or the app is closed) at
+print time, nothing happens until you open it, and the paper shows up late. Setup asks whether you
+want help keeping the computer awake at the right time.
+
 ## Make it yours
 
 This skill is a starting point, not a finished product. Play around with it. Every section, rule and
@@ -82,6 +87,11 @@ Reminders, a file or none. Get the exact database, project or file. If Notion, f
 record which properties mean project, priority, status, due date and owner. Also ask how they group
 work (projects, areas of life) so the To-Do Desk shows one move per group.
 
+**6. Keeping the computer awake.** Explain it in one plain sentence first: "Your paper is made on
+this computer, so it has to be awake (and the Claude app open) at <their time>, or it arrives late."
+Then ask: "Do you need help setting that up?" Options: Yes, help me (Recommended) / It's already
+always on / No thanks. If yes, follow "Keeping the computer awake" below.
+
 **Then:**
 1. Create the paper folder with `editions/` inside, and copy `assets/template.html` to it.
 2. Write `config.md` from `references/config-template.md`, filled with their answers. This file is the
@@ -94,9 +104,41 @@ work (projects, areas of life) so the To-Do Desk shows one move per group.
    The paper folder is <path>." Otherwise tell them how to schedule it in their setup.
 5. Remind them this is a base to play with: they can ask for any change at any time, and the paper
    will follow `config.md` from the next morning on.
-6. Tell them the one practical catch: a scheduled task on a laptop only runs if the computer is awake
-   and the Claude app is open. On a Mac, the simplest fix is System Settings > Battery > Options >
-   "Prevent automatic sleeping on power adapter when the display is off", plugged in overnight.
+6. If they said "No thanks" to question 6, remind them once more that a sleeping computer means a
+   late paper, and that they can ask for help with it any time.
+
+---
+
+## Keeping the computer awake
+
+Walk them through it step by step, checking in after each one. Pick the lightest option that works
+for them, and explain the trade-off in plain words (a little overnight power versus a paper that is
+waiting when they wake up). Two things are always needed: the computer plugged in, and the Claude app
+left open (closing the window is fine, quitting the app is not).
+
+**Mac, simplest (no password needed):** System Settings > Battery (or Energy) > Options > turn on
+"Prevent automatic sleeping on power adapter when the display is off". The screen still turns off;
+the computer just stays awake while plugged in.
+
+**Mac, sleep all night but wake for the paper:** two parts.
+1. A scheduled wake a few minutes before print time. This needs their admin password, so give them
+   the command to run themselves in Terminal (never ask for or type their password):
+   `sudo pmset repeat wakeorpoweron MTWRF 05:55:00` (adjust the days and time to their schedule;
+   `MTWRFSU` for every day). Check it with `pmset -g sched`.
+2. A small keep-awake item so the Mac doesn't fall straight back asleep after that wake. Give them one
+   Terminal command that writes `~/Library/LaunchAgents/com.morningpaper.wake.plist` (running
+   `/usr/bin/caffeinate -i -s -t 4200`, scheduled with `StartCalendarInterval` one minute before the
+   wake time on their days) and loads it with `launchctl bootstrap gui/$(id -u) <file>`. Let them run
+   it themselves: it is a persistent change to their computer, so they should see and approve it.
+   Tell them how to undo it: `launchctl bootout gui/$(id -u)/com.morningpaper.wake`, then delete the
+   file.
+
+**Windows:** Settings > System > Power & battery > Screen and sleep: set "When plugged in, put my
+device to sleep after" to Never.
+
+**Test it:** offer to schedule a one-off test run a few minutes from now, then let the computer sit
+idle and see whether the paper arrives. If it doesn't, check the power settings again before anything
+else.
 
 ---
 
